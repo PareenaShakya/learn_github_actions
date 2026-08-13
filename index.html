@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Day</title>
+    <style>
+      :root {
+        --bg1: #111827;
+        --bg2: #1f2937;
+        --card: rgba(255, 255, 255, 0.08);
+        --text: #f9fafb;
+        --muted: #d1d5db;
+        --accent: #fbbf24;
+        --accent-2: #34d399;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        color: var(--text);
+      }
+
+      .card {
+        width: min(90vw, 700px);
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 24px;
+        padding: 40px 30px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        text-align: center;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(251, 191, 36, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(251, 191, 36, 0.5);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        line-height: 1.1;
+      }
+
+      .highlight {
+        color: var(--accent);
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 18px auto 0;
+        max-width: 560px;
+      }
+
+      .button-row {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        background: linear-gradient(135deg, var(--accent), #f59e0b);
+        color: #111827;
+        border: none;
+        border-radius: 999px;
+        padding: 12px 22px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      .ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid rgba(255,255,255,0.2);
+      }
+
+      .fact {
+        margin-top: 28px;
+        font-size: 0.92rem;
+        color: var(--accent-2);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="badge">Random idea</div>
+      <h1>Today is a <span class="highlight">good day</span> to create something weird.</h1>
+      <p>
+        You do not need a perfect plan. Just start with a tiny idea, make something playful,
+        and let curiosity do the rest.
+      </p>
+
+      <div class="button-row">
+        <button onclick="shuffleMessage()">New idea</button>
+        <button class="ghost" onclick="window.location.reload()">Refresh</button>
+      </div>
+
+      <div class="fact" id="fact">Random fact: curiosity compounds faster than fear.</div>
+    </main>
+
+    <script>
+      const messages = [
+        'Today is a good day to build something silly and useful.',
+        'Your next big idea might start with a tiny experiment.',
+        'Make a little noise. It is better than staying quiet.',
+        'A strange idea today can become a great project tomorrow.',
+        'Try the thing that feels a little exciting and a little risky.'
+      ];
+
+      const facts = [
+        'Random fact: curiosity compounds faster than fear.',
+        'Random fact: tiny wins create momentum.',
+        'Random fact: a weird idea is still an idea.',
+        'Random fact: progress often starts with a messy first draft.',
+        'Random fact: action beats overthinking most of the time.'
+      ];
+
+      function shuffleMessage() {
+        const title = document.querySelector('h1');
+        const fact = document.getElementById('fact');
+
+        const randomText = messages[Math.floor(Math.random() * messages.length)];
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+
+        title.innerHTML = randomText.replace('good day', '<span class="highlight">good day</span>');
+        fact.textContent = randomFact;
+      }
+    </script>
+  </body>
+</html>
