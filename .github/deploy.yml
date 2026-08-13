@@ -1,4 +1,4 @@
-name: Test and Deploy
+gname: Test and Deploy
 
 # 1. When should this run?
 on:
